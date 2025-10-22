@@ -1,6 +1,6 @@
 .sp-button {
   display: inline-block;
-  padding: .75rem 1.5rem !important;
+  padding: 0.75rem 1.5rem !important;
   border: 0;
   border-radius: 8px;
   background: #fff !important;
@@ -32,17 +32,37 @@
   white-space: nowrap;
 }
 
+/* global font updates */
 .sp-button .text.is-default {
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: -0.03rem;
 }
 
 .sp-button .text.is-hover {
-  font-family: "Libre Baskerville Bold", serif;
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   opacity: 0.001;
-  letter-spacing: -.07rem;
+  letter-spacing: -0.02rem;
+}
+
+/* Outline variant */
+.sp-button.outline {
+  background: transparent !important;
+  border: 2px solid #202020 !important;
+  color: #202020 !important;
+}
+
+.sp-button.outline:hover {
+  background: #fff !important;
+  color: #202020 !important;
+  transform: scale(1.025);
+}
+
+.sp-button.outline .text.is-default,
+.sp-button.outline .text.is-hover {
+  color: #202020 !important;
 }
