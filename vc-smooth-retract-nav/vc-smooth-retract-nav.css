@@ -1,0 +1,10 @@
+/* Smooth retract navigation (SnapPages header) */
+.sp-header, #sp-header {
+  transform: translate3d(0,0,0);
+  will-change: transform;
+  transition: none; /* disable animation while hiding */
+}
+
+.sp-header.is-revealing, #sp-header.is-revealing {
+  transition: transform 0.5s ease; /* animate only when revealing */
+}
