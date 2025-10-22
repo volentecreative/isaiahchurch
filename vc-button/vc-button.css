@@ -52,14 +52,15 @@
 /* Outline variant */
 .sp-button.outline {
   background: transparent !important;
-  border: 2px solid #202020 !important;
-  color: #202020 !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
 }
 
 .sp-button.outline:hover {
-  background: #fff !important;
+  background-color: #e9e9e9 !important;
   color: #202020 !important;
   transform: scale(1.025);
+  border: 2px solid #e9e9e9 !important;
 }
 
 .sp-button.outline .text.is-default,
