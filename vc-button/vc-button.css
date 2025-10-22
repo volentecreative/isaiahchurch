@@ -1,6 +1,6 @@
 .sp-button {
   display: inline-block;
-  padding: 0.75rem 1rem !important;
+  padding: .75rem 1.5rem !important;
   border: 0;
   border-radius: 8px;
   background: #fff !important;
@@ -34,7 +34,7 @@
 
 .sp-button .text.is-default {
   font-family: Inter, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: -0.03rem;
 }
