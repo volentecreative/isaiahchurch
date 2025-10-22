@@ -45,4 +45,5 @@
   font-size: 1.25rem;
   opacity: 0.001;
   -webkit-text-stroke: 1px;
+  letter-spacing: -.07rem;
 }
