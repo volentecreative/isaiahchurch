@@ -1,6 +1,6 @@
 .sp-button {
   display: inline-block;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem !important;
   border: 0;
   border-radius: 8px;
   background: #fff !important;
@@ -44,6 +44,5 @@
   font-style: italic;
   font-size: 1.25rem;
   opacity: 0.001;
-  -webkit-text-stroke: 1px;
   letter-spacing: -.07rem;
 }
