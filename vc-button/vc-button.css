@@ -1,0 +1,48 @@
+.sp-button {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.5s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sp-button:hover {
+  background: #e9e9e9;
+  transform: scale(1.025);
+}
+
+.sp-button .text-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sp-button .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.sp-button .text.is-default {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.03rem;
+}
+
+.sp-button .text.is-hover {
+  font-family: "Libre Baskerville Bold", serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  opacity: 0.001;
+  -webkit-text-stroke: 1px;
+}
