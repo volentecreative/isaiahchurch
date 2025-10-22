@@ -65,5 +65,5 @@
 
 .sp-button.outline .text.is-default,
 .sp-button.outline .text.is-hover {
-  color: #202020 !important;
+  color: inherit;
 }
