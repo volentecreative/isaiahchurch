@@ -1,11 +1,13 @@
-// ===== Configurable Animation Settings =====
-const TRANSITION_DURATION = 0.5;   // seconds
-const STAGGER_AMOUNT      = 0.02;  // seconds between each char
-const EASING_TYPE         = "power2.inOut";
-const YOYO_EASE           = true;
-const ENTER_OFFSET        = 100;   // hover text starts below
-const EXIT_OFFSET         = -100;  // default text exits upward
-// ==========================================
+// ===== Option 2: Site-wide configurable animation =====
+
+// read from window.vcButtonConfig or use defaults
+const cfg = window.vcButtonConfig || {};
+const TRANSITION_DURATION = cfg.duration ?? 0.5;
+const STAGGER_AMOUNT      = cfg.stagger ?? 0.02;
+const EASING_TYPE         = cfg.ease ?? "power2.inOut";
+const YOYO_EASE           = cfg.yoyoEase ?? true;
+const ENTER_OFFSET        = cfg.enter ?? 100;
+const EXIT_OFFSET         = cfg.exit ?? -100;
 
 // --- Load GSAP if not already present ---
 (function loadGSAP(){
@@ -34,8 +36,7 @@ function splitChars(el){
 
 // --- Animation Setup ---
 function enhanceSpButton(btn){
-  // skip if already initialized
-  if (btn.querySelector(".text-wrap")) return;
+  if (btn.querySelector(".text-wrap")) return; // already processed
 
   const label = (btn.getAttribute("data-label") || btn.textContent || "").trim();
 
@@ -87,7 +88,7 @@ function enhanceSpButton(btn){
 
   document.querySelectorAll("a.sp-button, button.sp-button").forEach(enhanceSpButton);
 
-  // Watch for dynamically added buttons
+  // watch for dynamically added buttons
   const mo = new MutationObserver(() => {
     document.querySelectorAll("a.sp-button, button.sp-button").forEach(enhanceSpButton);
   });
