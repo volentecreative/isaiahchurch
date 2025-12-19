@@ -112,8 +112,8 @@
   function startAnimation() {
     var isFirstLoad = !sessionStorage.getItem('hasLoadedBefore');
     var config = {
-      minimumDisplayTime: isFirstLoad ? 2000 : 800,
-      initialDelay: isFirstLoad ? 500 : 200,
+      minimumDisplayTime: isFirstLoad ? 2500 : 1200,
+      initialDelay: isFirstLoad ? 300 : 150,
       maskUpDuration: 800,
       showLoaderOnlyOnce: false
     };
@@ -140,9 +140,10 @@
     }
     
     // Smooth lerp animation
+    fill.dataset.progress = '0';
     function tick() {
       var current = parseFloat(fill.dataset.progress) || 0;
-      var next = current + (target - current) * 0.18;
+      var next = current + (target - current) * 0.12;
       if (Math.abs(target - next) < 0.002) next = target;
       fill.dataset.progress = next;
       fill.style.transform = 'scaleY(' + next + ')';
@@ -187,8 +188,11 @@
     
     // Initial progress with delay
     setTimeout(function() {
-      bumpTo(0.05);
-      if (imgs.length) updateImageProgress();
+      bumpTo(0.02);
+      setTimeout(function() {
+        bumpTo(0.15);
+        if (imgs.length) updateImageProgress();
+      }, 400);
     }, config.initialDelay);
     
     // DOM ready
