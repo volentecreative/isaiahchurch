@@ -1,5 +1,4 @@
 // ===== Option 2: Site-wide configurable animation =====
-
 // read from window.vcButtonConfig or use defaults
 const cfg = window.vcButtonConfig || {};
 const TRANSITION_DURATION = cfg.duration ?? 0.5;
@@ -76,8 +75,17 @@ function enhanceSpButton(btn){
   tl.to(baseChars,  { yPercent: EXIT_OFFSET, stagger: STAGGER_AMOUNT }, 0)
     .to(hoverChars, { yPercent: 0,          stagger: STAGGER_AMOUNT }, 0);
 
-  btn.addEventListener("mouseenter", () => tl.play());
-  btn.addEventListener("mouseleave", () => tl.reverse());
+  // expose control for external callers
+  btn._vcHoverTimeline = tl;
+  btn._vcHoverPlay     = () => tl.play();
+  btn._vcHoverReverse  = () => tl.reverse();
+
+  // if this button is externally controlled, skip internal hover listeners
+  const externalHover = btn.hasAttribute("data-vc-external-hover");
+  if (!externalHover) {
+    btn.addEventListener("mouseenter", () => tl.play());
+    btn.addEventListener("mouseleave", () => tl.reverse());
+  }
 }
 
 // --- Initialize on DOM ready ---
@@ -85,9 +93,8 @@ function enhanceSpButton(btn){
   if (!window.gsap || document.readyState === "loading"){
     return setTimeout(ready, 25);
   }
-
   document.querySelectorAll("a.sp-button, button.sp-button").forEach(enhanceSpButton);
-
+  
   // watch for dynamically added buttons
   const mo = new MutationObserver(() => {
     document.querySelectorAll("a.sp-button, button.sp-button").forEach(enhanceSpButton);
