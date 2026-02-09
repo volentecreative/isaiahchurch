@@ -1,4 +1,4 @@
-/**
+/*
  * Isaiah Church Navigation Styles
  * Conditional navigation styling for tid=79970
  * Includes: smooth retract nav + custom nav styling + folder dropdowns
@@ -34,7 +34,7 @@
     transition: opacity 150ms ease-out, transform 150ms ease-out, visibility 0s linear 150ms;
     z-index: 2000;
   }
-  #sp-header #sp-nav-links li[data-type="folder"]:hover > ul.sp-second-nav {
+  #sp-header #sp-nav-links li[data-type="folder":hover] > ul.sp-second-nav {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -94,7 +94,7 @@
   margin-top: -0.3em;
 }
 
-#sp-header #sp-nav-links li[data-type="folder"]:hover > a::after {
+#sp-header #sp-nav-links li[data-type="folder":hover] > a::after {
   transform: rotate(225deg);
 }
 
@@ -107,27 +107,6 @@
   min-width: 0 !important;
   min-height: 0 !important;
   border-radius: 0 !important;
-}
-
-/* Restore full vc-button for College Students */
-#sp-header #sp-nav-links li#nav_college > a.sp-button {
-  all: unset;
-  display: inline-block;
-  padding: 1em 1.25rem !important;
-  border-radius: 8px;
-  background: #ffffff !important;
-  color: #202020 !important;
-  cursor: pointer;
-  transition: 0.5s ease;
-  text-decoration: none;
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-#sp-header #sp-nav-links li#nav_college > a.sp-button:hover {
-  background: #e9e9e9 !important;
-  transform: scale(1.025);
 }
 
 /* Desktop animation styles */
