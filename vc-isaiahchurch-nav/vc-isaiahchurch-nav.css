@@ -1,4 +1,4 @@
-/*
+/**
  * Isaiah Church Navigation Styles
  * Conditional navigation styling for tid=79970
  * Includes: smooth retract nav + custom nav styling + folder dropdowns
@@ -8,12 +8,12 @@
 .sp-header, #sp-header {
   transform: translate3d(0,0,0);
   will-change: transform;
-  transition: none; /* disable animation while hiding */
+  transition: none;
   z-index: 999 !important;
   position: fixed !important;
 }
 .sp-header.is-revealing, #sp-header.is-revealing {
-  transition: transform 0.5s ease; /* animate only when revealing */
+  transition: transform 0.5s ease;
 }
 
 /* Desktop dropdown behavior */
@@ -34,7 +34,7 @@
     transition: opacity 150ms ease-out, transform 150ms ease-out, visibility 0s linear 150ms;
     z-index: 2000;
   }
-  #sp-header #sp-nav-links li[data-type="folder":hover] > ul.sp-second-nav {
+  #sp-header #sp-nav-links li[data-type="folder"]:hover > ul.sp-second-nav {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -63,8 +63,8 @@
   margin-left: 1rem;
 }
 
-/* Text-only nav items (exclude College Students) */
-#sp-header #sp-nav-links li:not(#nav_college) > a {
+/* Text-only nav items (now applies to ALL li) */
+#sp-header #sp-nav-links li > a {
   font-family: "Inter", sans-serif !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
@@ -94,12 +94,12 @@
   margin-top: -0.3em;
 }
 
-#sp-header #sp-nav-links li[data-type="folder":hover] > a::after {
+#sp-header #sp-nav-links li[data-type="folder"]:hover > a::after {
   transform: rotate(225deg);
 }
 
-/* Strip vc-button styling from nav (except College Students) */
-#sp-header #sp-nav-links li:not(#nav_college) > a.sp-button {
+/* Strip vc-button styling from ALL nav items (except explicit College override added below) */
+#sp-header #sp-nav-links li > a.sp-button {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -109,23 +109,44 @@
   border-radius: 0 !important;
 }
 
+/* Restore full vc-button for College Students (unchanged) */
+#sp-header #sp-nav-links li#nav_college > a.sp-button {
+  all: unset;
+  display: inline-block;
+  padding: 1em 1.25rem !important;
+  border-radius: 8px;
+  background: #ffffff !important;
+  color: #202020 !important;
+  cursor: pointer;
+  transition: 0.5s ease;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+#sp-header #sp-nav-links li#nav_college > a.sp-button:hover {
+  background: #e9e9e9 !important;
+  transform: scale(1.025);
+}
+
 /* Desktop animation styles */
 @media (min-width: 1040px) {
-  #sp-header #sp-nav-links li:not(#nav_college) > a.sp-button .text.is-default,
-  #sp-header #sp-nav-links li:not(#nav_college) > a.sp-button .text.is-hover {
+  #sp-header #sp-nav-links li > a.sp-button .text.is-default,
+  #sp-header #sp-nav-links li > a.sp-button .text.is-hover {
     font-weight: 700 !important;
     font-size: 1.1rem !important;
     color: #ffffff !important;
     background: transparent !important;
   }
   
-  #sp-header #sp-nav-links li:not(#nav_college) > a.sp-button .text.is-default {
+  #sp-header #sp-nav-links li > a.sp-button .text.is-default {
     font-family: "Inter", sans-serif !important;
     font-style: normal !important;
     letter-spacing: -0.03rem !important;
   }
 
-  #sp-header #sp-nav-links li:not(#nav_college) > a.sp-button .text.is-hover {
+  #sp-header #sp-nav-links li > a.sp-button .text.is-hover {
     font-family: "IBM Plex Serif", serif !important;
     font-style: italic !important;
     letter-spacing: -0.02rem !important;
