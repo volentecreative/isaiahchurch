@@ -28,6 +28,21 @@
 (function() {
   'use strict';
 
+  // Skip preloader entirely on subsequent page visits within the same session.
+  // This fires before CSS injection or DOM creation to avoid any flash.
+  if (sessionStorage.getItem('hasLoadedBefore')) {
+    var revealPage = function() {
+      document.body.classList.add('page-loaded');
+      document.documentElement.classList.add('page-loaded');
+    };
+    if (document.body) {
+      revealPage();
+    } else {
+      document.addEventListener('DOMContentLoaded', revealPage);
+    }
+    return;
+  }
+
   // Inject CSS
   var style = document.createElement('style');
   style.textContent = `
@@ -102,14 +117,12 @@
 
   // Animation logic
   function startAnimation() {
-    var isFirstLoad = !sessionStorage.getItem('hasLoadedBefore');
     var config = {
-      minimumDisplayTime: isFirstLoad ? 2000 : 1000,
+      minimumDisplayTime: 2000,
       maskUpDuration: 800,
-      showLoaderOnlyOnce: false,
       breathingDelay: 2000
     };
-    
+
     sessionStorage.setItem('hasLoadedBefore', 'true');
     
     var preloader = document.getElementById('preloader');
@@ -119,13 +132,6 @@
     var logoMask = preloader.querySelector('.logo-mask');
     var startTime = Date.now();
     var hasLoaded = false;
-    
-    if (config.showLoaderOnlyOnce && sessionStorage.getItem('snappagesLoaderShown')) {
-      preloader.style.display = 'none';
-      document.body.classList.add('page-loaded');
-      document.documentElement.classList.add('page-loaded');
-      return;
-    }
     
     // Add breathing animation if page takes longer than 2 seconds
     var breathingTimeout = setTimeout(function() {
@@ -149,11 +155,7 @@
         setTimeout(function() {
           preloader.classList.add('mask-up');
         }, 50);
-        
-        if (config.showLoaderOnlyOnce) {
-          sessionStorage.setItem('snappagesLoaderShown', 'true');
-        }
-        
+
         setTimeout(function() {
           preloader.style.display = 'none';
         }, config.maskUpDuration + 50);
